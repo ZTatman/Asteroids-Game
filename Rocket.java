@@ -30,7 +30,7 @@ public class Rocket extends PolyBlob implements BlobAction, BlobProximity {
 	private final double delta = 0.15; // Angular change per key press
 	private final double speed = 10.0; // speed in direction of motion
 	
-	// SandBox instance variable "sandbox"
+	// SandBox static variable "sandbox"
 	static SandBox sandbox;
 	
 	public Rocket(int initial_Xpos, int initial_Ypos, SandBox box) {
@@ -41,7 +41,7 @@ public class Rocket extends PolyBlob implements BlobAction, BlobProximity {
 		
 	}
 	
-	
+	// Turning rocket ship right
 	private void rotate_right()
 	{
 		this.angle += delta;
@@ -53,6 +53,7 @@ public class Rocket extends PolyBlob implements BlobAction, BlobProximity {
 		this.setAngle(this.angle);
 	}
 	
+	// Turning rocket ship left
 	private void rotate_left()
 	{
 		this.angle -= delta;
@@ -64,6 +65,7 @@ public class Rocket extends PolyBlob implements BlobAction, BlobProximity {
 		this.setAngle(this.angle);
 	}
 	
+	// Moving rocket ship forward
 	private void move_up()
 	{
 		Point p = this.getLoc();
@@ -100,22 +102,27 @@ public class Rocket extends PolyBlob implements BlobAction, BlobProximity {
 		sandbox.addBlob(shoot);
 	}
 	
+	// Key press events
 	@Override
 	public void keyAction(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+		// Left <- key pressed
 		if (e.getKeyCode() == 37)
 		{
 			rotate_left();
 		}
+		// Right -> key pressed
 		else if (e.getKeyCode() == 39)
 		{
 			rotate_right();
 		}
+		// Up key pressed
 		else if (e.getKeyCode() == 38)
 		{
 			move_up();
 		}
+		// Spacebar key pressed
 		else if (e.getKeyCode() == 32) {
 			launch(sandbox);
 			//BlobUtils.playSound();
